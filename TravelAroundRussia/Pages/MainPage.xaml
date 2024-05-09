@@ -1,0 +1,63 @@
+﻿<Page x:Class="TravelAroundRussia.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TravelAroundRussia.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Туры">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <UniformGrid Columns="1" Rows="3" Grid.Column="0">
+                <TextBlock Text="Введите текст для поиска: " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="Выберите тип: " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+            </UniformGrid>
+            <UniformGrid Columns="1" Rows="3" Grid.Column="1">
+                <TextBox x:Name="TB_Find" HorizontalAlignment="Left" VerticalAlignment="Center" TextChanged="TB_Find_TextChanged"></TextBox>
+                <ComboBox x:Name="CB_Filter" HorizontalAlignment="Left" VerticalAlignment="Center" DisplayMemberPath="NameType" SelectionChanged="CB_Filter_SelectionChanged"></ComboBox>
+                <CheckBox x:Name="CHB_Is_Actual" Checked="CHB_Is_Actual_Checked" Unchecked="CHB_Is_Actual_Unchecked" Content="только актуальные туры" HorizontalAlignment="Left" VerticalAlignment="Center"></CheckBox>
+            </UniformGrid>
+        </Grid>
+        <ListView x:Name="LV_Tours" Grid.Row="1" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel>
+
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Grid Height="150" Width="200">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{Binding NameTour}" HorizontalAlignment="Center"></TextBlock>
+                            <Image Grid.Row="1" Source="/Resources/picture.png"/>
+                            <TextBlock Grid.Row="2" Text="{Binding FullPriceView}" HorizontalAlignment="Center"></TextBlock>
+                            <UniformGrid Rows="1" Columns="2" Grid.Row="3">
+                                <TextBlock Text="{Binding State}" Foreground="{Binding colorBrush}" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="{Binding CountTicket}" HorizontalAlignment="Right"></TextBlock>
+                            </UniformGrid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
