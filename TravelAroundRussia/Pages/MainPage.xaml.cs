@@ -35,7 +35,7 @@ namespace TravelAroundRussia.Pages
 
         private void CHB_Is_Actual_Checked(object sender, RoutedEventArgs e)
         {
-            LV_Tours.ItemsSource = DataBase.entities.Tours.OrderBy(t => t.NameTour).Where(t => t.IsActual == true).ToList();
+           
         }
 
         private void CHB_Is_Actual_Unchecked(object sender, RoutedEventArgs e)
